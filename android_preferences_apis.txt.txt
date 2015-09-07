@@ -1,0 +1,41 @@
+ private <T> void commit(String key, T t) {
+
+        if (t instanceof Boolean) {
+            getEditor().putBoolean(key, (Boolean) t);
+        }
+        if (t instanceof Float) {
+            getEditor().putFloat(key, (Float) t);
+        }
+        if (t instanceof Integer) {
+            getEditor().putInt(key, (Integer) t);
+        }
+        if (t instanceof Long) {
+            getEditor().putLong(key, (Long) t);
+        }
+        if (t instanceof String) {
+            getEditor().putString(key, (String) t);
+        }
+        getEditor().commit();
+
+    }
+
+    private <T> T read(String key, T defaultValue) {
+
+
+        if (defaultValue == Boolean.class) {
+            return (T) Boolean.valueOf(getPreferences().getBoolean(key, (Boolean) defaultValue));
+        }
+        if (defaultValue == Float.class) {
+            return (T) Float.valueOf(getPreferences().getFloat(key, (Float) defaultValue));
+        }
+        if (defaultValue == Integer.class) {
+            return (T) Integer.valueOf(getPreferences().getInt(key, (Integer) defaultValue));
+        }
+        if (defaultValue == Long.class) {
+            return (T) Long.valueOf(getPreferences().getLong(key, (Long) defaultValue));
+        }
+        if (defaultValue == String.class) {
+            return (T) String.valueOf(getPreferences().getString(key, (String) defaultValue));
+        }
+        return null;
+    }
